@@ -13,19 +13,12 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "capistrano-cowboy"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
-  gem.email = "josh@technicalpickles.com"
-  gem.homepage = "http://github.com/technicalpickles/capistrano-cowboy"
-  gem.authors = ["Joshua Nichols"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  spec.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  spec.add_development_dependency 'rspec', '> 1.2.3'
-  gem.add_development_dependency "rspec", "~> 2.0.0"
-  gem.add_development_dependency "bundler", "~> 1.0.0"
-  gem.add_development_dependency "jeweler", "~> 1.5.0.pre5"
-  gem.add_development_dependency "rcov", ">= 0"
+  gem.version = "0.1.0"
+  gem.summary = %Q{Deploy like a cowboy}
+  gem.description = %Q{capistrano-cowboy let's you deploy without having to commit to version control. While dangerous, this can be incredibly useful for testing the ops-related parts of a deploy}
+  gem.email = "jesse@railsmachine.com"
+  gem.homepage = "http://github.com/railsmachine/capistrano-cowboy"
+  gem.authors = ["Jesse Newland"]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
