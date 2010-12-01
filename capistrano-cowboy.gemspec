@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "capistrano-cowboy.gemspec",
     "lib/capistrano-cowboy.rb",
     "lib/capistrano/cowboy.rb",
     "spec/capistrano-cowboy_spec.rb",
