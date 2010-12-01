@@ -1,6 +1,66 @@
 = capistrano-cowboy
 
-Description goes here.
+DISCLAIMER: Deploying like a cowboy can be fun, but dangerous. Use with care!
+
+Sometimes, you just need to get your code out there. There's not time for version control, there's not time for committing. capistrano-cowboy let's you  deploy like you shoot: from the hip.
+
+    $ gem install capistrano-cowboy
+
+Create or update your ~/.caprc to also contain this line:
+
+    require 'capistrano/cowboy'
+
+Now it's time to ship it!
+
+    project $ cap cowboy deploy
+
+Calling the `cowboy` task overrides any scm configuration you may have configured for capistrano. Instead, it uses the {copy deploy strategy}[http://rdoc.info/github/capistrano/capistrano/master/Capistrano/Deploy/Strategy/Copy], tarring the current directory and sending it over the line.
+
+This plays nice with capistrano-ext's multistage support too, but you have to be be careful of the order. You need to call `cowboy` after the stage:
+
+    project $ cap staging cowboy deploy
+
+== Use Cases
+
+As dangerous as this sounds, there are some specific use cases it's great for:
+
+* developing and testing system automation that's part your normal capistrano deploy (ie using {chef}[http://opscode.com/chef/], {puppet}[http://www.puppetlabs.com/], or even *shock* {moonshine}[http://github.com/railsmachine/moonshine])
+* developing features that are reliant on a non-development environment that'd that might be trial-and-error heavy
+* deploying stuff that doesn't even have version control yet
+
+Basically, it's useful when you need to get code or configuration working that might take a few tries to get straight. It has a few benefits:
+
+* faster feedback cycle
+* less chance of commit log with messages like "Fixing foo", "Fixing foo again...", "Really fixing foo", etc. 
+
+== Cavaets
+
+=== Danger, danger!
+capistrano-cowboy will deploy your current directory, no matter which branch you are on, what's in it, etc. Imagine this nightmare scneario:
+
+   $ git checkout crazy-experimental-stuff
+   $ cap production cowboy deploy
+
+Yep, you just accidentally the entire crazy experimental branch.
+
+=== git ignored files
+
+Many projects choose to git-ignore config/database.yml, and have it symlinked it at deploy time. By using capistrano-cowboy, this file will actually exist on the server, and capistrano will not try to override it with a symlink.
+
+Be warned, weird stuff might happen if you cowboy up your config/database.yml or other git ignored files.
+
+That said, this section is probably a patch away from going away.
+
+=== slowwww dowwwwwn
+
+The :copy deploy method creates a tarball and scp's it to your server. While capistrano-cowboy tries to exclude junk it doesn't need to send over, the tarballs can get big.
+
+This can lead to slowish deploys, depending on your upload speeds.
+
+=== symlinks
+
+If for some reason you have symlinks in your local directory, this will also be included in the tarball that's uploaded. The target of the symlink is almost definitely not going to exist on the server.
+
 
 == Contributing to capistrano-cowboy
  
@@ -12,8 +72,15 @@ Description goes here.
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+== Credits
+
+{Rob Lingle}[https://github.com/roblingle] for the original idea
+
+{Jesse Newland}[http://github.com/jnewland] for codifying it at as gist: https://gist.github.com/542617
+
+{Josh Nichols}[http://github.com/technicalpickles] for geming it up
+
 == Copyright
 
-Copyright (c) 2010 Joshua Nichols. See LICENSE.txt for
-further details.
+Copyright (c) 2010 Jesse Newland and Joshua Nichols. See LICENSE.txt for further details.
 
