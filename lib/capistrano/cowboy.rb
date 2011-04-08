@@ -17,6 +17,9 @@ module Capistrano
           desc 'Deploy without SCM'
           task :default do
             before 'deploy:update_code', 'cowboy:configure'
+
+            # workaround to ensure cowboy comes into play before gitflow
+            before 'gitflow:calculate_tag', 'cowboy:configure'
           end
         end
       end
