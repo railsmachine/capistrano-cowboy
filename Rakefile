@@ -13,7 +13,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "capistrano-cowboy"
-  gem.version = "0.1.1"
+  gem.version = "0.1.2"
   gem.summary = %Q{Deploy like a cowboy}
   gem.description = %Q{capistrano-cowboy let's you deploy without having to commit to version control. While dangerous, this can be incredibly useful for testing the ops-related parts of a deploy}
   gem.email = "jesse@railsmachine.com"
