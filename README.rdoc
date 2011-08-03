@@ -41,7 +41,7 @@ capistrano-cowboy will deploy your current directory, no matter which branch you
    $ git checkout crazy-experimental-stuff
    $ cap production cowboy deploy
 
-Yep, you just accidentally the entire crazy experimental branch.
+Yep, you just accidentally deployed the entire crazy experimental branch.
 
 === git ignored files
 
