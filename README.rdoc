@@ -33,7 +33,7 @@ Basically, it's useful when you need to get code or configuration working that m
 * faster feedback cycle
 * less chance of commit log with messages like "Fixing foo", "Fixing foo again...", "Really fixing foo", etc. 
 
-== Cavaets
+== Caveats
 
 === Danger, danger!
 capistrano-cowboy will deploy your current directory, no matter which branch you are on, what's in it, etc. Imagine this nightmare scneario:
