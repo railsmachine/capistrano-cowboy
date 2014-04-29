@@ -82,5 +82,5 @@ If for some reason you have symlinks in your local directory, this will also be 
 
 == Copyright
 
-Copyright (c) 2010 Jesse Newland and Joshua Nichols. See LICENSE.txt for further details.
+Copyright (c) 2010-2014 Rails Machine. See LICENSE.txt for further details.
 
